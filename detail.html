@@ -9,52 +9,142 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+.detail-container{
+max-width:1200px;
+margin:120px auto;
+padding:20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+}
+
+.detail-image img{
+width:100%;
+border-radius:12px;
+}
+
+.detail-info h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.harga{
+font-size:32px;
+color:green;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.detail-info p{
+margin-bottom:20px;
+line-height:1.8;
+}
+
+.detail-info label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+.detail-info select,
+.detail-info textarea{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+.detail-info textarea{
+height:120px;
+}
+
+.order-btn{
+display:inline-block;
+margin-top:20px;
+padding:15px 35px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+@media(max-width:768px){
+
+.detail-container{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="section">
+<div class="detail-container">
 
-<img id="gambar" width="100%">
+<div class="detail-image">
+
+<img id="gambar">
+
+</div>
+
+<div class="detail-info">
 
 <h1 id="nama"></h1>
 
-<h2 id="harga"></h2>
+<div id="harga" class="harga"></div>
 
 <p id="deskripsi"></p>
 
-<br>
-
-<label>Bahan</label>
+<label>Pilih Bahan</label>
 
 <select>
 <option>MBTech</option>
-<option>Vision</option>
 <option>Cherokee</option>
+<option>Vision</option>
+<option>Murano</option>
 </select>
 
-<br><br>
-
-<label>Warna</label>
+<label>Pilih Warna</label>
 
 <select>
 <option>Hitam</option>
 <option>Beige</option>
+<option>Coklat</option>
 <option>Merah Hitam</option>
+<option>Abu Abu</option>
 </select>
 
-<br><br>
+<label>Bantal Kepala</label>
+
+<select>
+<option>Tanpa Bantal</option>
+<option>1 Pasang</option>
+<option>2 Pasang</option>
+</select>
+
+<label>Karpet Dasar</label>
+
+<select>
+<option>Tanpa Karpet</option>
+<option>Tambah Karpet Dasar</option>
+</select>
 
 <label>Keterangan</label>
 
-<textarea
-style="width:100%;height:120px;">
-</textarea>
+<textarea placeholder="Contoh: Avanza 2023 warna hitam kombinasi merah"></textarea>
 
-<br><br>
-
-<a id="wa" class="btn">
-Pesan via WhatsApp
+<a id="wa" class="order-btn">
+Pesan Via WhatsApp
 </a>
+
+</div>
 
 </div>
 
@@ -62,28 +152,22 @@ Pesan via WhatsApp
 
 <script>
 
-const params =
-new URLSearchParams(location.search);
+const params = new URLSearchParams(window.location.search);
 
 const id = params.get("id");
 
-const produk =
-products.find(p=>p.id===id);
+const produk = products.find(item => item.id === id);
 
-document.getElementById("nama").innerHTML =
-produk.nama;
+document.getElementById("nama").innerHTML = produk.nama;
 
-document.getElementById("harga").innerHTML =
-produk.harga;
+document.getElementById("harga").innerHTML = produk.harga;
 
-document.getElementById("deskripsi").innerHTML =
-produk.deskripsi;
+document.getElementById("deskripsi").innerHTML = produk.deskripsi;
 
-document.getElementById("gambar").src =
-produk.gambar;
+document.getElementById("gambar").src = produk.gambar;
 
 document.getElementById("wa").href =
-"https://wa.me/6281234567890?text=Saya ingin memesan "+produk.nama;
+"https://wa.me/6281234567890?text=Saya ingin memesan " + produk.nama;
 
 </script>
 
