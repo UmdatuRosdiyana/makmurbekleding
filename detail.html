@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Detail Produk</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="section">
+
+<img id="gambar" width="100%">
+
+<h1 id="nama"></h1>
+
+<h2 id="harga"></h2>
+
+<p id="deskripsi"></p>
+
+<br>
+
+<label>Bahan</label>
+
+<select>
+<option>MBTech</option>
+<option>Vision</option>
+<option>Cherokee</option>
+</select>
+
+<br><br>
+
+<label>Warna</label>
+
+<select>
+<option>Hitam</option>
+<option>Beige</option>
+<option>Merah Hitam</option>
+</select>
+
+<br><br>
+
+<label>Keterangan</label>
+
+<textarea
+style="width:100%;height:120px;">
+</textarea>
+
+<br><br>
+
+<a id="wa" class="btn">
+Pesan via WhatsApp
+</a>
+
+</div>
+
+<script src="products.js"></script>
+
+<script>
+
+const params =
+new URLSearchParams(location.search);
+
+const id = params.get("id");
+
+const produk =
+products.find(p=>p.id===id);
+
+document.getElementById("nama").innerHTML =
+produk.nama;
+
+document.getElementById("harga").innerHTML =
+produk.harga;
+
+document.getElementById("deskripsi").innerHTML =
+produk.deskripsi;
+
+document.getElementById("gambar").src =
+produk.gambar;
+
+document.getElementById("wa").href =
+"https://wa.me/6281234567890?text=Saya ingin memesan "+produk.nama;
+
+</script>
+
+</body>
+</html>
